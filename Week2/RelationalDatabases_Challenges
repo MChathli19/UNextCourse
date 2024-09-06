@@ -1,0 +1,28 @@
+1. Data Integrity and Consistency
+Challenge: Ensuring that data remains consistent across the database when multiple transactions occur simultaneously.
+Solution:
+Transactions: Use ACID (Atomicity, Consistency, Isolation, Durability) compliant transactions to ensure that all database changes are performed safely. Transactions should either complete fully or not at all.
+Concurrency Control: Implement optimistic or pessimistic locking to manage concurrent access to the same data. Choose depending on your use case. Optimistic locking is useful when conflicts are rare, while pessimistic locking is used when there’s a higher chance of conflicts.
+Foreign Keys and Constraints: Use foreign keys and unique constraints to maintain referential integrity between tables and avoid orphaned or duplicate records.
+
+2. Scaling and Performance under High Load
+Challenge: As the amount of data grows or concurrent users increase, maintaining fast query response times becomes difficult.
+Solution:
+Partitioning: Divide large tables into smaller, more manageable pieces using horizontal (range, hash, or list) partitioning to improve query performance and manageability.
+Sharding: For very large databases, use sharding to distribute data across multiple database servers. Each shard contains a subset of the data, thus spreading the load.
+Replication: Use master-slave replication where read queries are distributed across slave databases, while write queries are handled by the master.
+Load Balancing: Implement load balancing mechanisms that distribute query traffic across different database servers.
+
+3. Schema Changes
+Challenge: Changing the schema of a large database can be complex and risky, especially in production systems where downtime is unacceptable.
+Solution:
+Zero Downtime Migration: Adopt database migration strategies that allow schema changes without downtime, such as adding new columns without removing old ones until data migration is complete.
+Version Control for Schema: Use tools like Liquibase or Flyway to version control database schema changes. This allows for better management and rollback of schema changes.
+Progressive Rollout: Implement changes in smaller increments, such as creating new tables or columns first, migrating data, and then removing old tables or fields after validation.
+
+4. Data Security
+Challenge: Relational databases store critical and sensitive information that must be protected against unauthorized access and breaches.
+Solution:
+Encryption: Encrypt sensitive data both at rest and in transit. Use database encryption features or application-level encryption.
+Access Control: Implement strong role-based access control (RBAC) to restrict access to database resources based on user roles. Ensure that only authorized users can access certain tables or perform certain operations.
+Auditing and Monitoring: Set up database activity monitoring to track access and changes. Regularly audit logs to detect any suspicious activity.
